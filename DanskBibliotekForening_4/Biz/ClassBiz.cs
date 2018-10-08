@@ -12,7 +12,7 @@ namespace Biz
     public class ClassBiz
     {
 
-        classDBF CDBF = new ClassDBF();
+        ClassDbfDB CDBF = new ClassDbfDB();
         private ObservableCollection<ClassBog> _boeger = new ObservableCollection<ClassBog>();
         private ObservableCollection<ClassBog> _laanteBoeger = new ObservableCollection<ClassBog>();
         private ClassBog _Bog;
@@ -43,10 +43,9 @@ namespace Biz
             set { _Bog = value; }
         }
 
-        public GetAllLentBoks(ClassPerson person)
+        public ObservableCollection<ClassBog> GetAllLentBoks(ClassPerson person)
         {
-
-
+            throw new NotImplementedException();
         }
         public string GetAllBooksWhereTheTitleContainsTheseWords(ClassPerson person)
         {
@@ -64,7 +63,7 @@ namespace Biz
         }
         public bool CheckForDoubleLending(ClassBog bog)
         {
-
+            throw new NotImplementedException();
         }
     }
 }

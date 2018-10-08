@@ -23,6 +23,17 @@ namespace Repository
             mail = "";
             rolle = 0;
         }
+
+        public ClassPerson(int id, string navn, string adresse, string telefon, string mail, int rolle)
+        {
+            this.id = id;
+            this.navn = navn;
+            this.adresse = adresse;
+            this.telefon = telefon;
+            this.mail = mail;
+            this.rolle = rolle;
+        }
+
         public int id
         {
             get { return _id; }
