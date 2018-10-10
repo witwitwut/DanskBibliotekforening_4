@@ -5,8 +5,131 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DanskBibliotekForening_4"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Dansk Biblioteks Forening" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <GroupBox x:Name="groupBoxBooks"
+                  Grid.Column="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="1.3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0"
+                       Grid.Row="0"
+                       Content="Søg efter titel:"
+                       VerticalContentAlignment="Center"
+                       HorizontalContentAlignment="Right"
+                       Margin="5"/>
+                <TextBox x:Name="textBoxSearch"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Grid.Row="0"
+                         Margin="5"
+                         VerticalContentAlignment="Center"/>
+                <ListView x:Name="listViewBooks"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="3"
+                          Grid.RowSpan="9"
+                          Grid.Row="1"
+                          Margin="5"/>
+                <Button x:Name="buttonLoan"
+                        Grid.Column="2"
+                        Grid.Row="10"
+                        Margin="5, 5, 5, 5"
+                        Content="Lån bog"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="groupBoxUser"
+                  Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="1.7*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button x:Name="buttonLogOut"
+                        Grid.Column="2"
+                        Margin="5"
+                        Content="Log Ud"/>
+                <ComboBox x:Name="comboBoxLendBooks"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="3"
+                          Grid.Row="1"
+                          Margin="5">                    
+                </ComboBox>
+                <Label Grid.Column="0"
+                       Grid.Row="4"
+                       Content="Bog:"
+                       VerticalContentAlignment="Center"
+                       HorizontalContentAlignment="Right"
+                       Margin="5"/>
+                <TextBox x:Name="textBoxLendBook"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Grid.Row="4"
+                         Margin="5"
+                         VerticalContentAlignment="Center"
+                         IsReadOnly="True"/>
+                <Label Grid.Column="0"
+                       Grid.Row="5"
+                       Content="Udlånt:"
+                       VerticalContentAlignment="Center"
+                       HorizontalContentAlignment="Right"
+                       Margin="5"/>
+                <DatePicker x:Name="datePickerLoan"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="5"
+                            IsEnabled="False"
+                            Margin="5"/>
+                <Label Grid.Column="0"
+                       Grid.Row="6"
+                       Content="Afleverings Dato:"
+                       VerticalContentAlignment="Center"
+                       HorizontalContentAlignment="Right"
+                       Margin="5"/>
+                <DatePicker x:Name="datePickerTurnIn"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="6"
+                            IsEnabled="False"
+                            Margin="5"/>
+                <Button x:Name="buttonTurnIn"
+                        Grid.Column="1"
+                        Grid.Row="10"
+                        Margin="5"
+                        Content="Aflever"/>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>

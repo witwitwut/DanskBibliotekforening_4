@@ -10,21 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DanskBibliotekForening_4
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LogIn.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LogIn : Window
     {
-        LogIn windowLogIn = new LogIn();
-        public MainWindow()
+        public LogIn()
         {
             InitializeComponent();
-            windowLogIn.Show();
         }
     }
 }
