@@ -23,9 +23,9 @@ namespace IO
         {
 
             ObservableCollection<ClassBog> obcBooks = new ObservableCollection<ClassBog>();
-            
 
-            DataTable dt = DbReturnDataTable("EXECUTE getAllBooksLike " + $"{search}");
+
+            DataTable dt = FunctionExecuteStoredProcedures("getAllBooksLike", "@SearchWord", search);
 
             foreach (DataRow row in dt.Rows)
             {
@@ -45,29 +45,29 @@ namespace IO
         public ObservableCollection<ClassBog> GetAllBooksLendToUser(string id)
         {
             ObservableCollection<ClassBog> obcLendBooks = new ObservableCollection<ClassBog>();
-            DataTable dt = DbReturnDataTable("EXECUTE spGetAllBooksLentToUser " + $"{id}");
+
+            DataTable dt = FunctionExecuteStoredProcedures("spGetAllBooksLentToUser", "@personid", id);
 
             foreach (DataRow row in dt.Rows)
             {
                 obcLendBooks.Add(new ClassBog(Convert.ToInt32(row["id"]),
-                                              row["titel"].ToString(),
-                                              row["isbnNr"].ToString(),
-                                              row["TypeNavn"].ToString(),
-                                              row["forfatter"].ToString(),
-                                              row["forlagsNavn"].ToString(),
-                                              row["genreType"].ToString(),
-                                              Convert.ToDecimal(row["pris"])));
+                                          row["titel"].ToString(),
+                                          row["isbnNr"].ToString(),
+                                          row["TypeNavn"].ToString(),
+                                          row["forfatter"].ToString(),
+                                          row["forlagsNavn"].ToString(),
+                                          row["genreType"].ToString(),
+                                          Convert.ToDecimal(row["pris"])));
             }
 
             return obcLendBooks;
         }
 
-        public void UpdateTheLendingStatus(string id, bool status)
+        public void UpdateTheLendingStatus(string id, int status)
         {
             try
-            {                
-                FunctionExecuteNonQuery("EXECUTE UpdateTheLendingStatus " + $"{id}," +
-                    $" {status}");
+            {
+                FunctionExecuteStoredProcedures("UpdateTheLendingStatus", "@bogid", id, "@status", status.ToString());
             }
             catch (Exception ex)
             {
@@ -79,7 +79,7 @@ namespace IO
         {
             ClassPerson cp = new ClassPerson();
 
-           DataTable dt = DbReturnDataTable("EXECUTE GetUser " + $"{userID}, {password}");
+            DataTable dt = FunctionExecuteStoredProcedures("GetUser", "@CprNr", userID, "@PassWord", password);
 
             foreach (DataRow row in dt.Rows)
             {

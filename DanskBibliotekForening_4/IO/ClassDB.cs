@@ -27,7 +27,7 @@ namespace IO
         }
 
 
-        protected void OpenDB()
+        private void OpenDB()
         {
             try
             {
@@ -54,7 +54,7 @@ namespace IO
                 throw;
             }
         }
-        protected void CloseDB()
+        private void CloseDB()
         {
             try
             {
@@ -67,6 +67,93 @@ namespace IO
             }
         }
 
+        protected DataTable FunctionExecuteStoredProcedures(string storedProcedure, string parameterId_1, string parameter_1)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+
+                OpenDB();
+                using (var cmd = new SqlCommand(storedProcedure, myConnection))
+                using (var da = new SqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue(parameterId_1, parameter_1);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    da.Fill(dt);
+                }
+                CloseDB();
+
+                //SqlCommand cmd = new SqlCommand();
+
+
+
+                //cmd.CommandText = storedProcedure;
+                //cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Parameters.AddWithValue(parameterId_1, parameter_1);
+                //OpenDB();
+                //SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                //da.Fill(dt);
+
+                //CloseDB();
+
+
+
+            }
+            catch (SqlException ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            return dt;
+        }
+        protected DataTable FunctionExecuteStoredProcedures(string storedProcedure, string parameterId_1, string parameter_1, string parameterId_2, string parameter_2)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                OpenDB();
+                using (var cmd = new SqlCommand(storedProcedure, myConnection))
+                using (var da = new SqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue(parameterId_1, parameter_1);
+                    cmd.Parameters.AddWithValue(parameterId_2, parameter_2);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    da.Fill(dt);
+                }
+                CloseDB();
+            }
+            catch (SqlException ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            return dt;
+        }
+        protected DataTable FunctionExecuteStoredProcedures(string storedProcedure, string parameterId_1, string parameter_1, string parameterId_2, string parameter_2, string parameterId_3, string parameter_3)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                OpenDB();
+                using (var cmd = new SqlCommand(storedProcedure, myConnection))
+                using (var da = new SqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue(parameterId_1, parameter_1);
+                    cmd.Parameters.AddWithValue(parameterId_2, parameter_2);
+                    cmd.Parameters.AddWithValue(parameterId_3, parameter_3);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    da.Fill(dt);
+                }
+                CloseDB();
+            }
+            catch (SqlException ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            return dt;
+        }
         protected void FunctionExecuteNonQuery(string strSql)
         {
             try
