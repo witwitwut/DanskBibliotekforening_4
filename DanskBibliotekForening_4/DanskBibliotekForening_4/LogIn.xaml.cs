@@ -23,5 +23,15 @@ namespace DanskBibliotekForening_4
         {
             InitializeComponent();
         }
+
+        private void textBoxCprNr_GotMouseCapture(object sender, MouseEventArgs e)
+        {
+            this.textBoxCprNr.Text = "";
+        }
+
+        private void textBoxPassword_GotMouseCapture(object sender, MouseEventArgs e)
+        {
+            this.textBoxPassword.Text = "";
+        }
     }
 }
