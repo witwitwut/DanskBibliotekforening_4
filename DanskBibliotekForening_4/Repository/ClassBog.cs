@@ -10,8 +10,16 @@ namespace Repository
     {
         public ClassBog()
         {
+            id = 0;
+            isbnNr = "";
+            titel = "";
+            forfatter = "";
+            forlag = "";
+            genre = "";
+            type = "";
+            pris = 0;
         }
-        public ClassBog(int inId, string inIsbnNr, string inTitel, string inForfatter, string inForlag, string inGenre, string inType, decimal inPris)
+        public ClassBog(int inId, string inTitel, string inIsbnNr, string inType, string inForfatter, string inForlag, string inGenre, decimal inPris)
         {
             id = inId;
             isbnNr = inIsbnNr;

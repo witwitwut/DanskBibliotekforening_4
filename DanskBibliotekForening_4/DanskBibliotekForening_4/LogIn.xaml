@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DanskBibliotekForening_4"
         mc:Ignorable="d"
-        Title="LogIn" Height="200" Width="200">
+        Title="LogIn" Height="200" Width="250">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -16,29 +17,41 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Label Grid.Column="0"
+               Grid.Row="0"
+               Margin="10"
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Right"
+               Content="CprNr:"/>
         <TextBox x:Name="textBoxCprNr"
-                 Grid.Column="0"
+                 Grid.Column="1"
                  Grid.ColumnSpan="2"
                  Grid.Row="0"
-                 Text="CprNr"
+                 Text="{Binding id,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  Foreground="Gray"
                  Margin="10, 15"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Left" GotMouseCapture="textBoxCprNr_GotMouseCapture"/>
+                 HorizontalContentAlignment="Left"/>
+        <Label Grid.Column="0"
+               Grid.Row="1"
+               Margin="10"
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Right"
+               Content="Password:"/>
         <TextBox x:Name="textBoxPassword"
-                 Grid.Column="0"
+                 Grid.Column="1"
                  Grid.ColumnSpan="2"
                  Grid.Row="1"
-                 Text="Password"
+                 Text="{Binding user,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  Foreground="Gray"
                  Margin="10, 15"
                  VerticalContentAlignment="Center"
-                 HorizontalContentAlignment="Left" GotMouseCapture="textBoxPassword_GotMouseCapture"/>
+                 HorizontalContentAlignment="Left"/>
         <Button x:Name="buttonLogIn"
                 Grid.Column="0"
-                Grid.ColumnSpan="2"
+                Grid.ColumnSpan="3"
                 Grid.Row="2"
                 Margin="10, 15"
-                Content="LogIn"/>
+                Content="LogIn" Click="buttonLogIn_Click"/>
     </Grid>
 </Window>

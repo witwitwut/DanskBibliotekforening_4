@@ -24,7 +24,7 @@ namespace Repository
             rolle = 0;
         }
 
-        public ClassPerson(int id, string navn, string adresse, string telefon, string mail, int rolle)
+        public ClassPerson(int id, string navn, string adresse, string mail, string telefon, int rolle)
         {
             this.id = id;
             this.navn = navn;

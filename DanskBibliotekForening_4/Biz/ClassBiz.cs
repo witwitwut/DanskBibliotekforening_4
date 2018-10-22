@@ -6,61 +6,115 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Biz
 {
-    public class ClassBiz
+    public class ClassBiz : ClassNotify
     {
 
         ClassDbfDB CDBF = new ClassDbfDB();
+
         private ObservableCollection<ClassBog> _boeger = new ObservableCollection<ClassBog>();
         private ObservableCollection<ClassBog> _laanteBoeger = new ObservableCollection<ClassBog>();
         private ClassBog _Bog;
         private ClassPerson _person;
+        private string _search;
+
         public ClassBiz()
         {
-
+            search = "";
+            //boeger = CDBF.GetAllBooksLike(search);
         }
 
         public ObservableCollection<ClassBog> laanteboeger
         {
             get { return _laanteBoeger; }
-            private set { _laanteBoeger = value; }
+            set
+            {
+                if (value != _laanteBoeger)
+                {
+                    _laanteBoeger = value;
+                    Notify("laanteboeger");
+                }                
+            }
         }
         public ObservableCollection<ClassBog> boeger
         {
-            get { return boeger; }
-            private set { boeger = value; }
+            get { return _boeger; }
+            private set
+            {
+                if (value != _boeger)
+                {
+                    _boeger = value;
+                    Notify("boeger");
+                }                
+            }
         }
+
         public ClassPerson person
         {
             get { return _person; }
-            set { _person = value; }
+            set
+            {
+                if (value != _person)
+                {
+                    _person = value;
+                    Notify("person");
+                }                
+            }
         }
+
         public ClassBog bog
         {
             get { return _Bog; }
-            set { _Bog = value; }
+            set
+            {
+                if (value != _Bog)
+                {
+                    _Bog = value;
+                    Notify("bog");
+                }
+            }
         }
-
-        public ObservableCollection<ClassBog> GetAllLentBoks(ClassPerson person)
+        
+        public string search
         {
-            throw new NotImplementedException();
+            get { return _search; }
+            set
+            {
+                if (value != _search)
+                {
+                    _search = value;
+                    if (_search != "")
+                    {
+                        boeger = GetAllBooksWhereTheTitleContainsTheseWords(_search);
+                    }
+                    Notify("search");
+                }
+            }
         }
-        public string GetAllBooksWhereTheTitleContainsTheseWords(ClassPerson person)
+
+        public ObservableCollection<ClassBog> GetAllLentBoks(string id)
         {
-
-            return person.id.ToString();
-
+            return CDBF.GetAllBooksLendToUser(id);
         }
+
+        public ObservableCollection<ClassBog> GetAllBooksWhereTheTitleContainsTheseWords(string search)
+        {
+            return CDBF.GetAllBooksLike(search);
+        }
+
         public void LendThisBookToTheUser(ClassBog bog, ClassBog person)
         {
 
         }
+
         public void SubmiThisBookToTheLibrary(ClassBog bog, ClassPerson person)
         {
 
         }
+
         public bool CheckForDoubleLending(ClassBog bog)
         {
             throw new NotImplementedException();

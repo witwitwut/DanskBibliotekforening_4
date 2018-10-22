@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassBog.cs" />
+    <Compile Include="ClassNotify.cs" />
     <Compile Include="ClassPerson.cs" />
+    <Compile Include="ClassRegEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Udlaan.cs" />
   </ItemGroup>

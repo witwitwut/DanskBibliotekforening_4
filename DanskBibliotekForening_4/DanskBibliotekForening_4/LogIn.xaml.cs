@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Biz;
+using Repository;
 
 namespace DanskBibliotekForening_4
 {
@@ -19,19 +21,46 @@ namespace DanskBibliotekForening_4
     /// </summary>
     public partial class LogIn : Window
     {
-        public LogIn()
+        Window callingWindow;
+
+        private ClassLogin _CL;
+        private ClassBiz _CB;
+
+        public LogIn(ClassLogin inCL, ClassBiz inCB, Window inWN)
         {
             InitializeComponent();
+            CL = inCL;
+            CB = inCB;
+            callingWindow = inWN;
+            this.textBoxCprNr.DataContext = CL;
+            this.textBoxPassword.DataContext = CL;
         }
 
-        private void textBoxCprNr_GotMouseCapture(object sender, MouseEventArgs e)
+        public ClassLogin CL
         {
-            this.textBoxCprNr.Text = "";
+            get { return _CL; }
+            set { _CL = value; }
         }
-
-        private void textBoxPassword_GotMouseCapture(object sender, MouseEventArgs e)
+        
+        public ClassBiz CB
         {
-            this.textBoxPassword.Text = "";
+            get { return _CB; }
+            set { _CB = value; }
+        }
+        
+        private void buttonLogIn_Click(object sender, RoutedEventArgs e)
+        {
+            CL.GetUserData();
+            if ( CL.cp.id == 0)
+            {
+                MessageBox.Show("Du har indtastet forkert CprNr eller Password");
+            }
+            else
+            {
+                CB.laanteboeger = CB.GetAllLentBoks(CL.cp.id.ToString());
+                this.Hide();
+                callingWindow.Show();
+            }
         }
     }
 }

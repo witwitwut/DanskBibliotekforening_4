@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Biz;
+using Repository;
 
 namespace DanskBibliotekForening_4
 {
@@ -20,11 +22,21 @@ namespace DanskBibliotekForening_4
     /// </summary>
     public partial class MainWindow : Window
     {
-        LogIn windowLogIn = new LogIn();
+        ClassBiz CB = new ClassBiz();
+        ClassLogin CL = new ClassLogin();
+
         public MainWindow()
         {
+            LogIn windowLogIn = new LogIn(CL, CB, this);
             InitializeComponent();
+            this.mainGrid.DataContext = CB;
             windowLogIn.Show();
+            this.Hide();
+        }
+
+        private void comboBoxLendBooks_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
